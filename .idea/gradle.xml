@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/camera_01" />
             <option value="$PROJECT_DIR$/camera_02_light" />
             <option value="$PROJECT_DIR$/camera_03" />
+            <option value="$PROJECT_DIR$/camera_04_face_detection" />
             <option value="$PROJECT_DIR$/hello_world" />
           </set>
         </option>

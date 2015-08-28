@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/camera_01/camera_01.iml" filepath="$PROJECT_DIR$/camera_01/camera_01.iml" />
       <module fileurl="file://$PROJECT_DIR$/camera_02_light/camera_02_light.iml" filepath="$PROJECT_DIR$/camera_02_light/camera_02_light.iml" />
       <module fileurl="file://$PROJECT_DIR$/camera_03/camera_03.iml" filepath="$PROJECT_DIR$/camera_03/camera_03.iml" />
+      <module fileurl="file://$PROJECT_DIR$/camera_04_face_detection/camera_04_face_detection.iml" filepath="$PROJECT_DIR$/camera_04_face_detection/camera_04_face_detection.iml" />
       <module fileurl="file://$PROJECT_DIR$/hello_world/hello_world.iml" filepath="$PROJECT_DIR$/hello_world/hello_world.iml" />
     </modules>
   </component>
