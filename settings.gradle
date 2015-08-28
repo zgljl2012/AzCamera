@@ -1,1 +1,1 @@
-include ':app', ':hello_world', ':camera_01', ':camera_02_light', ':camera_03'
+include ':app', ':hello_world', ':camera_01', ':camera_02_light', ':camera_03', ':camera_04_face_detection'

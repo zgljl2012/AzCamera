@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">camera_04_face_detection</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="last">上一张</string>
+    <string name="next">下一张</string>
+    <string name="face_detection">人脸检测</string>
+</resources>
