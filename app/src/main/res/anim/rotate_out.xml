@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+    pivotX - 旋转时Y方向的中心点
+    pivotY - 旋转时X方向的中心点
+    duration - 持续时间
+    -->
+    <rotate
+        android:duration="1000"
+        android:fromDegrees="359"
+        android:toDegrees="0"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:fillAfter="true"
+        android:interpolator="@android:anim/linear_interpolator" />
+</set>

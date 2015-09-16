@@ -8,10 +8,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.WindowManager;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class MainActivity extends Activity implements SensorEventListener {
@@ -22,7 +19,6 @@ public class MainActivity extends Activity implements SensorEventListener {
     private TextView mTvValue;
     // 屏幕亮度
     private TextView mTvBrightness;
-    private RelativeLayout mLayout;
 
     // 传感器管理器
     private SensorManager mSensorManager;
@@ -31,10 +27,6 @@ public class MainActivity extends Activity implements SensorEventListener {
     // 默认屏幕亮度
     private int mDefaultBrightness;
 
-    // 屏幕宽高
-    private int screenHeight;
-    private int screenWidth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +34,6 @@ public class MainActivity extends Activity implements SensorEventListener {
         mTvAccuracy = (TextView) findViewById(R.id.tv_accuracy);
         mTvValue = (TextView)findViewById(R.id.tv_value);
         mTvBrightness = (TextView)findViewById(R.id.tv_brightness);
-        mLayout = (RelativeLayout) findViewById(R.id.main);
 
         // 所有的传感器都归于一种服务
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -51,16 +42,6 @@ public class MainActivity extends Activity implements SensorEventListener {
         // 获取默认屏幕亮度
         mDefaultBrightness = getBrightness();
         mTvBrightness.setText(""+mDefaultBrightness);
-
-        // 获取窗口管理器
-        WindowManager wm = getWindowManager();
-        Display display = wm.getDefaultDisplay();
-        // 获取屏幕的宽和高
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        display.getMetrics(displayMetrics);
-        this.screenHeight = displayMetrics.heightPixels;
-        this.screenWidth  = displayMetrics.widthPixels;
-
     }
 
     /**
@@ -74,6 +55,10 @@ public class MainActivity extends Activity implements SensorEventListener {
         Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, brightness);
     }
 
+    /**
+     * 获取屏幕亮度值
+     * @return
+     */
     protected int getBrightness(){
         WindowManager.LayoutParams lp = getWindow().getAttributes();
         int brightness =  Settings.System.getInt(getContentResolver(),

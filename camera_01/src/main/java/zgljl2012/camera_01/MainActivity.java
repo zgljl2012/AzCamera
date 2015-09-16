@@ -2,19 +2,13 @@ package zgljl2012.camera_01;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -30,7 +24,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class MainActivity extends Activity implements SensorEventListener {
+public class MainActivity extends Activity {
 
     private SurfaceView sView;
     private SurfaceHolder surfaceHolder;
@@ -39,13 +33,6 @@ public class MainActivity extends Activity implements SensorEventListener {
     private Camera camera;
     // 是否在预览中
     private boolean isPreview = false;
-
-    // 传感器管理器
-    private SensorManager mSensorManager;
-    // 传感器
-    private Sensor mSensorLight;
-    // 默认屏幕亮度
-    private int mDefaultBrightness;
 
     // 屏幕宽高
     private int screenHeight;
@@ -71,13 +58,6 @@ public class MainActivity extends Activity implements SensorEventListener {
         display.getMetrics(displayMetrics);
         this.screenHeight = displayMetrics.heightPixels;
         this.screenWidth  = displayMetrics.widthPixels;
-
-        // 所有的传感器都归于一种服务
-        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        mSensorLight = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
-
-        // 获取默认屏幕亮度
-        mDefaultBrightness = getBrightness();
 
         sView = (SurfaceView) findViewById(R.id.surfaceView);
         // 设置该Surface不需要自己维护缓冲区
@@ -228,56 +208,5 @@ public class MainActivity extends Activity implements SensorEventListener {
                 capture(view);
                 break;
         }
-    }
-
-    /**
-     *
-     * @param brightness    亮度值：0-255
-     */
-    protected void setBrightness(int brightness) {
-        WindowManager.LayoutParams lp = getWindow().getAttributes();
-        lp.screenBrightness = brightness/255.0f;
-        getWindow().setAttributes(lp);
-        Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, brightness);
-    }
-
-    protected int getBrightness(){
-        WindowManager.LayoutParams lp = getWindow().getAttributes();
-        int brightness =  Settings.System.getInt(getContentResolver(),
-                Settings.System.SCREEN_BRIGHTNESS,0);
-        return brightness;
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // 注册监听器
-        mSensorManager.registerListener(this, mSensorLight, SensorManager.SENSOR_DELAY_GAME);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mSensorManager.unregisterListener(this);
-    }
-
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-       if(event.values[0] <= 10){
-            setBrightness(255);
-        }
-        else {
-            setBrightness(mDefaultBrightness);
-        }
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        setBrightness(mDefaultBrightness);
     }
 }

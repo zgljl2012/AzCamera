@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">Camera</string>
+    <string name="app_name">FaceCamera</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="delete">删除</string>
+    <string name="back">返回</string>
 </resources>

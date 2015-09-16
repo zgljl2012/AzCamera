@@ -38,16 +38,6 @@ public class AzLight implements SensorEventListener{
         // empty body
     }
 
-    /**
-     * 内部接口
-     */
-    public interface OnLightChangeListener {
-        void onLightChanged(float value, AzLight azLight);
-    }
-
-    // 检测光照所需实现的接口
-    private SensorEventListener sensorEventListener;
-
     // 光照强度改变的监听接口
     private OnLightChangeListener onLightChangeListener;
 
@@ -86,7 +76,7 @@ public class AzLight implements SensorEventListener{
 
     /**
      * 获取屏幕亮度
-     * @return
+     * @return 屏幕亮度
      */
     protected int getBrightness(){
         WindowManager.LayoutParams lp = mContext.getWindow().getAttributes();
@@ -95,8 +85,7 @@ public class AzLight implements SensorEventListener{
         return brightness;
     }
 
-    public void registerListener(OnLightChangeListener onLightChangeListener) {
-        this.onLightChangeListener = onLightChangeListener;
+    public void registerListener() {
         // 注册监听器
         mSensorManager.registerListener(this, mSensorLight, SensorManager.SENSOR_DELAY_GAME);
     }
